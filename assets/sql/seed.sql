@@ -20,16 +20,19 @@ VALUES  ("Sales Person", 800000.00, 1),
 
 SELECT * FROM roles;
 
-
-INSERT INTO employees (first_name, last_name, role_id)
-VALUES  ("Mark", "Hamill", 1),
-        ("Sally", "Sales", 2),
-        ("Lindsey", "Lohan", 3),
+INSERT INTO managers (first_name, last_name, role_id)
+VALUES  ("Lindsey", "Lohan", 3),
         ("Ada", "Lovelace", 6),
-        ("Linus", "Torvalds", 5),
-        ("Faris", "Kadir", 4),
         ("Alan", "Turing", 7),
-        ("Joe", "Law", 8),
         ("Jane", "Law", 9);
+
+SELECT * FROM managers;
+
+INSERT INTO employees (first_name, last_name, role_id, manager_id)
+VALUES  ("Mark", "Hamill", 1, 1),
+        ("Sally", "Sales", 2, 1),
+        ("Linus", "Torvalds", 5, 2),
+        ("Faris", "Kadir", 4, 2),
+        ("Joe", "Law", 8, 4);
 
 SELECT * FROM employees;
