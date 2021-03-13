@@ -120,14 +120,14 @@ const viewAll = (table) => {
 const addEmp = () =>    {
     const managers = [];
     const roles = [];
-
+    //Gets all of the managers from the db and stores them in an array.
     connection.query(`SELECT managers.id, first_name, last_name, title From managers INNER JOIN roles on managers.role_id = roles.id`, (err, res) => {
         if (err) throw err;
         res.forEach((thisObj) =>   {
             managers.push({"name": `${thisObj.title} - ${thisObj.first_name} ${thisObj.last_name}`, "value": thisObj.id})
         });
     });
-
+    //Gets all of the roles from the db and stores them in an array.
     connection.query(`SELECT * From roles`, (err, res) => {
         if (err) throw err;
         res.forEach((thisObj) =>   {
@@ -175,13 +175,14 @@ const updateEmp = () =>    {
     const emp = [];
     const rol = [];
 
+    //Gets a list of all the employees and stores them in an array.
     connection.query('SELECT * FROM employees', (err, res) => {
         if (err) throw err;
         res.forEach((thisObj) =>   {
             emp.push({"name": `${thisObj.first_name} ${thisObj.last_name}`, "value": thisObj.id})
         });
     });
-
+    //Gets a list of all the roles and stores them in an array.
     connection.query('SELECT * FROM roles', (err, res) => {
         if (err) throw err;
         res.forEach((thisObj) =>   {
@@ -191,7 +192,7 @@ const updateEmp = () =>    {
 
     inquirer.prompt([
         {
-            type:   "confirm",
+            type:   "confirm", //I had to add this confirm question due to what appears to be a bug in inquirer. If the first question is something other than a list, you cannot reference a previously defined array. You can manually type an array out in choices, but you cannot reference an existing array.
             message: "Are you sure you want to change the role for this employee?",
             name: "confirm"
         },
@@ -248,6 +249,7 @@ const addDept = () =>    {
 const addRole = () =>    {
     const depts = [];
     
+    //Gets a list of the departments and stores them in an array.
     connection.query(`SELECT * FROM departments`, (err, res) => {
         if (err) throw err;
         res.forEach((thisObj) =>   {
@@ -282,6 +284,7 @@ const addRole = () =>    {
         });
     });
 };
+
 
 
 
